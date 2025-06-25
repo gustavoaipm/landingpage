@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 
@@ -116,7 +115,7 @@ export default function Home() {
           <div className={styles.testimonialsGrid}>
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialContent}>
-                <p>"Gustavo AI has transformed how we manage our 200+ properties. The AI automation saves us 20+ hours per week!"</p>
+                <p>&ldquo;Gustavo AI has transformed how we manage our 200+ properties. The AI automation saves us 20+ hours per week!&rdquo;</p>
               </div>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.authorAvatar}>SM</div>
@@ -128,7 +127,7 @@ export default function Home() {
             </div>
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialContent}>
-                <p>"The predictive analytics helped us increase our rental income by 15% in just 6 months. Incredible ROI!"</p>
+                <p>&ldquo;The predictive analytics helped us increase our rental income by 15% in just 6 months. Incredible ROI!&rdquo;</p>
               </div>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.authorAvatar}>MJ</div>
@@ -140,7 +139,7 @@ export default function Home() {
             </div>
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialContent}>
-                <p>"24/7 AI support means our tenants get instant help, and we get peace of mind. Game changer!"</p>
+                <p>&ldquo;24/7 AI support means our tenants get instant help, and we get peace of mind. Game changer!&rdquo;</p>
               </div>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.authorAvatar}>LC</div>

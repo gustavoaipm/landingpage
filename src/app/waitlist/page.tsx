@@ -89,9 +89,9 @@ export default function WaitlistPage() {
           ) : (
             <div className={styles.success}>
               <div className={styles.successIcon}>✓</div>
-              <h2 className={styles.successTitle}>You're on the list!</h2>
+              <h2 className={styles.successTitle}>You&apos;re on the list!</h2>
               <p className={styles.successMessage}>
-                Thank you for joining our waitlist. We'll notify you as soon as Gustavo AI is ready for you.
+                Thank you for joining our waitlist. We&apos;ll notify you as soon as Gustavo AI is ready for you.
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
