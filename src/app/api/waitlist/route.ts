@@ -1,18 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, readFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
-// Define the data structure
-interface WaitlistEntry {
-  name: string;
-  email: string;
-  timestamp: string;
-}
-
-// Path to store the data
-const dataDir = path.join(process.cwd(), 'data');
-const dataFile = path.join(dataDir, 'waitlist.json');
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,44 +25,49 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create data directory if it doesn't exist
-    if (!existsSync(dataDir)) {
-      await mkdir(dataDir, { recursive: true });
+    // Check for duplicate email
+    const { data: existing, error: findError } = await supabase
+      .from('waitlist')
+      .select('id')
+      .eq('email', email.toLowerCase().trim());
+
+    if (findError) {
+      console.error('Error checking for existing email:', findError);
+      return NextResponse.json(
+        { error: 'Database error: ' + findError.message },
+        { status: 500 }
+      );
     }
 
-    // Read existing data
-    let entries: WaitlistEntry[] = [];
-    if (existsSync(dataFile)) {
-      const fileContent = await readFile(dataFile, 'utf-8');
-      entries = JSON.parse(fileContent);
-    }
-
-    // Check if email already exists
-    const existingEntry = entries.find(entry => entry.email.toLowerCase() === email.toLowerCase());
-    if (existingEntry) {
+    if (existing && existing.length > 0) {
       return NextResponse.json(
         { error: 'This email is already on the waitlist' },
         { status: 409 }
       );
     }
 
-    // Add new entry
-    const newEntry: WaitlistEntry = {
-      name: name.trim(),
-      email: email.toLowerCase().trim(),
-      timestamp: new Date().toISOString()
-    };
+    // Insert new entry
+    const { data, error } = await supabase
+      .from('waitlist')
+      .insert([{ 
+        name: name.trim(), 
+        email: email.toLowerCase().trim() 
+      }])
+      .select();
 
-    entries.push(newEntry);
-
-    // Save to file
-    await writeFile(dataFile, JSON.stringify(entries, null, 2));
+    if (error) {
+      console.error('Error inserting new entry:', error);
+      return NextResponse.json(
+        { error: 'Database error: ' + error.message },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { 
         success: true, 
         message: 'Successfully added to waitlist!',
-        entry: newEntry
+        entry: data[0]
       },
       { status: 201 }
     );
@@ -78,7 +75,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Waitlist API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error: ' + (error instanceof Error ? error.message : 'Unknown error') },
       { status: 500 }
     );
   }
@@ -86,22 +83,33 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    if (!existsSync(dataFile)) {
-      return NextResponse.json({ entries: [] });
+    console.log('Environment variables:', {
+      url: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Missing',
+      key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Set' : 'Missing'
+    });
+
+    const { data, error } = await supabase
+      .from('waitlist')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching waitlist entries:', error);
+      return NextResponse.json(
+        { error: 'Database error: ' + error.message },
+        { status: 500 }
+      );
     }
 
-    const fileContent = await readFile(dataFile, 'utf-8');
-    const entries: WaitlistEntry[] = JSON.parse(fileContent);
-
     return NextResponse.json({ 
-      entries,
-      count: entries.length
+      entries: data || [],
+      count: data?.length || 0
     });
 
   } catch (error) {
     console.error('Waitlist GET error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error: ' + (error instanceof Error ? error.message : 'Unknown error') },
       { status: 500 }
     );
   }
