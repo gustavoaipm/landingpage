@@ -1,7 +1,16 @@
+'use client';
+
 import Link from "next/link";
+import { useState } from "react";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
     <div className={styles.page}>
       {/* Navigation */}
@@ -17,7 +26,19 @@ export default function Home() {
             <a href="#contact">Contact</a>
           </div>
           <Link href="/waitlist" className={styles.ctaButton}>Join Waitlist</Link>
+          <button className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
+            ☰
+          </button>
         </div>
+        {mobileMenuOpen && (
+          <div className={`${styles.mobileMenu} ${styles.active}`}>
+            <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
+            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
+            <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+            <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>Join Waitlist</Link>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
