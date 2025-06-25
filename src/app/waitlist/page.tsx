@@ -10,6 +10,7 @@ export default function WaitlistPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -17,16 +18,37 @@ export default function WaitlistPage() {
       ...prev,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '' });
+    setError('');
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '' });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to join waitlist');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -49,6 +71,18 @@ export default function WaitlistPage() {
 
           {!isSubmitted ? (
             <form className={styles.form} onSubmit={handleSubmit}>
+              {error && (
+                <div style={{ 
+                  color: '#ff6b6b', 
+                  backgroundColor: 'rgba(255, 107, 107, 0.1)', 
+                  padding: '10px', 
+                  borderRadius: '8px', 
+                  marginBottom: '15px',
+                  textAlign: 'center'
+                }}>
+                  {error}
+                </div>
+              )}
               <div className={styles.formGroup}>
                 <input
                   type="text"
