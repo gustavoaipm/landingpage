@@ -8,6 +8,12 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+// Email validation function
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { name, email } = await request.json();
@@ -20,9 +26,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!email.includes('@')) {
+    // Validate email format
+    if (!isValidEmail(email)) {
       return NextResponse.json(
-        { error: 'Please provide a valid email' },
+        { error: 'Please provide a valid email address' },
         { status: 400 }
       );
     }
