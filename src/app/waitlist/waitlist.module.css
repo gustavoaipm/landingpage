@@ -427,8 +427,16 @@
 }
 
 /* Social Media Button Colors */
-.twitter:hover {
-  background: #1da1f2 !important;
+.email:hover {
+  background: #ea4335 !important;
+}
+
+.sms:hover {
+  background: #34c759 !important;
+}
+
+.whatsapp:hover {
+  background: #25d366 !important;
 }
 
 .linkedin:hover {
@@ -439,12 +447,8 @@
   background: #1877f2 !important;
 }
 
-.whatsapp:hover {
-  background: #25d366 !important;
-}
-
-.email:hover {
-  background: #ea4335 !important;
+.twitter:hover {
+  background: #000000 !important;
 }
 
 /* Copy Section */

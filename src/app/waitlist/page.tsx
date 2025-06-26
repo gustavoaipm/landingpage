@@ -71,8 +71,14 @@ export default function WaitlistPage() {
     let shareUrl = '';
     
     switch (platform) {
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(waitlistUrl)}`;
+      case 'email':
+        shareUrl = `mailto:?subject=${encodeURIComponent('Join Gustavo AI Waitlist')}&body=${encodeURIComponent(text + '\n\n' + waitlistUrl)}`;
+        break;
+      case 'sms':
+        shareUrl = `sms:?body=${encodeURIComponent(text + ' ' + waitlistUrl)}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + waitlistUrl)}`;
         break;
       case 'linkedin':
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(waitlistUrl)}`;
@@ -80,11 +86,8 @@ export default function WaitlistPage() {
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(waitlistUrl)}`;
         break;
-      case 'whatsapp':
-        shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + waitlistUrl)}`;
-        break;
-      case 'email':
-        shareUrl = `mailto:?subject=${encodeURIComponent('Join Gustavo AI Waitlist')}&body=${encodeURIComponent(text + '\n\n' + waitlistUrl)}`;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(waitlistUrl)}`;
         break;
       default:
         return;
@@ -193,10 +196,22 @@ export default function WaitlistPage() {
                     
                     <div className={styles.shareButtons}>
                       <button 
-                        onClick={() => shareOnSocial('twitter')}
-                        className={`${styles.shareButton} ${styles.twitter}`}
+                        onClick={() => shareOnSocial('email')}
+                        className={`${styles.shareButton} ${styles.email}`}
                       >
-                        <span>🐦</span> Twitter
+                        <span>📧</span> Email
+                      </button>
+                      <button 
+                        onClick={() => shareOnSocial('sms')}
+                        className={`${styles.shareButton} ${styles.sms}`}
+                      >
+                        <span>📞</span> Text
+                      </button>
+                      <button 
+                        onClick={() => shareOnSocial('whatsapp')}
+                        className={`${styles.shareButton} ${styles.whatsapp}`}
+                      >
+                        <span>💬</span> WhatsApp
                       </button>
                       <button 
                         onClick={() => shareOnSocial('linkedin')}
@@ -211,16 +226,10 @@ export default function WaitlistPage() {
                         <span>📘</span> Facebook
                       </button>
                       <button 
-                        onClick={() => shareOnSocial('whatsapp')}
-                        className={`${styles.shareButton} ${styles.whatsapp}`}
+                        onClick={() => shareOnSocial('twitter')}
+                        className={`${styles.shareButton} ${styles.twitter}`}
                       >
-                        <span>💬</span> WhatsApp
-                      </button>
-                      <button 
-                        onClick={() => shareOnSocial('email')}
-                        className={`${styles.shareButton} ${styles.email}`}
-                      >
-                        <span>📧</span> Email
+                        <span>𝕏</span> X
                       </button>
                     </div>
                     
