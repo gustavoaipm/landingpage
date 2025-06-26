@@ -199,37 +199,43 @@ export default function WaitlistPage() {
                         onClick={() => shareOnSocial('email')}
                         className={`${styles.shareButton} ${styles.email}`}
                       >
-                        <span>📧</span> Email
+                        <span className={styles.appIcon}>📧</span>
+                        <span className={styles.companyName}>Mail</span>
                       </button>
                       <button 
                         onClick={() => shareOnSocial('sms')}
                         className={`${styles.shareButton} ${styles.sms}`}
                       >
-                        <span>📞</span> Text
+                        <span className={styles.appIcon}>💬</span>
+                        <span className={styles.companyName}>Messages</span>
                       </button>
                       <button 
                         onClick={() => shareOnSocial('whatsapp')}
                         className={`${styles.shareButton} ${styles.whatsapp}`}
                       >
-                        <span>💬</span> WhatsApp
+                        <span className={styles.appIcon}>📱</span>
+                        <span className={styles.companyName}>WhatsApp</span>
                       </button>
                       <button 
                         onClick={() => shareOnSocial('linkedin')}
                         className={`${styles.shareButton} ${styles.linkedin}`}
                       >
-                        <span>💼</span> LinkedIn
+                        <span className={styles.appIcon}>💼</span>
+                        <span className={styles.companyName}>LinkedIn</span>
                       </button>
                       <button 
                         onClick={() => shareOnSocial('facebook')}
                         className={`${styles.shareButton} ${styles.facebook}`}
                       >
-                        <span>📘</span> Facebook
+                        <span className={styles.appIcon}>📘</span>
+                        <span className={styles.companyName}>Facebook</span>
                       </button>
                       <button 
                         onClick={() => shareOnSocial('twitter')}
                         className={`${styles.shareButton} ${styles.twitter}`}
                       >
-                        <span>𝕏</span> X
+                        <span className={styles.appIcon}>𝕏</span>
+                        <span className={styles.companyName}>X</span>
                       </button>
                     </div>
                     
