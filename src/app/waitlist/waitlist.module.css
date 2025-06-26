@@ -250,13 +250,14 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .submitButton:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  transform: none;
 }
 
 /* Loading State */
@@ -270,8 +271,8 @@
 .spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid transparent;
-  border-top: 2px solid #667eea;
+  border: 2px solid #667eea;
+  border-top: 2px solid transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -283,10 +284,8 @@
 
 /* Success State */
 .success {
-  max-width: 400px;
-  margin: 0 auto;
   text-align: center;
-  animation: fadeInUp 0.5s ease;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .successIcon {
@@ -297,16 +296,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  color: #4ade80;
   margin: 0 auto 20px;
   backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .successTitle {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 15px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .successMessage {
@@ -314,44 +315,229 @@
   line-height: 1.6;
   margin-bottom: 30px;
   opacity: 0.9;
+  color: white;
+}
+
+/* Refer a Friend Section */
+.referSection {
+  margin-top: 30px;
+}
+
+.referButton {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.referButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.referIcon {
+  font-size: 1.2rem;
+}
+
+/* Share Options */
+.shareOptions {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.shareHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.shareHeader h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.shareButtons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.shareButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.shareButton:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.shareButton span {
+  font-size: 1.1rem;
+}
+
+/* Social Media Button Colors */
+.twitter:hover {
+  background: #1da1f2 !important;
+}
+
+.linkedin:hover {
+  background: #0077b5 !important;
+}
+
+.facebook:hover {
+  background: #1877f2 !important;
+}
+
+.whatsapp:hover {
+  background: #25d366 !important;
+}
+
+.email:hover {
+  background: #ea4335 !important;
+}
+
+/* Copy Section */
+.copySection {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 20px;
+}
+
+.copySection p {
+  margin: 0 0 15px 0;
+  font-size: 1rem;
+  color: white;
+  opacity: 0.9;
+}
+
+.copyContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.copyInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+.copyInput:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.copyButton {
+  background: #4ade80;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.copyButton:hover {
+  background: #22c55e;
+  transform: translateY(-1px);
 }
 
 .backButton {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1);
   color: white;
-  border: 2px solid white;
-  padding: 12px 24px;
-  border-radius: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 15px 30px;
+  border-radius: 10px;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .backButton:hover {
-  background: white;
-  color: #667eea;
+  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
-/* Features */
 .features {
   display: flex;
   justify-content: center;
   gap: 30px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
-  margin-top: 40px;
 }
 
 .feature {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 12px 20px;
+  background: rgba(255,255,255,0.1);
+  padding: 15px 25px;
   border-radius: 25px;
+  font-weight: 500;
+  color: #fff;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: transform 0.2s;
 }
 
 .feature:hover {
@@ -359,14 +545,13 @@
 }
 
 .featureIcon {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -377,7 +562,7 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
   
   .logoTextGradient {
@@ -391,11 +576,11 @@
 
 @media (max-width: 768px) {
   .content {
-    padding: 30px 20px;
+    padding: 30px 15px;
   }
   
   .title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   
   .subtitle {
@@ -404,17 +589,15 @@
   
   .logoTextGradient {
     font-size: 2rem;
-    margin-bottom: 24px;
   }
   
   .featuresRow {
     gap: 15px;
-    margin-bottom: 24px;
   }
   
   .featuresRow .feature {
-    padding: 8px 16px;
     font-size: 0.95rem;
+    padding: 8px 16px;
   }
   
   .form {
@@ -428,15 +611,19 @@
   .successMessage {
     font-size: 1rem;
   }
+  
+  .shareButtons {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
   .content {
-    padding: 20px 15px;
+    padding: 25px 10px;
   }
   
   .title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
   
   .subtitle {
@@ -446,40 +633,33 @@
   
   .logoTextGradient {
     font-size: 1.8rem;
-    margin-bottom: 20px;
   }
   
   .featuresRow {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
   }
   
   .featuresRow .feature {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 20px;
     font-size: 0.9rem;
+    padding: 6px 12px;
   }
   
   .form {
-    max-width: 100%;
+    max-width: 320px;
   }
   
   .input {
-    padding: 14px 18px;
-    font-size: 0.95rem;
+    padding: 12px 16px;
   }
   
   .submitButton {
-    padding: 16px 24px;
-    font-size: 1rem;
+    padding: 15px 25px;
   }
   
   .successIcon {
     width: 60px;
     height: 60px;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   
   .successTitle {
@@ -491,44 +671,48 @@
   }
   
   .backButton {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 12px 25px;
+  }
+  
+  .shareButtons {
+    grid-template-columns: 1fr;
+  }
+  
+  .copyContainer {
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
 @media (max-width: 480px) {
   .content {
-    padding: 15px 10px;
+    padding: 20px 8px;
   }
   
   .title {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
   }
   
   .subtitle {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 25px;
   }
   
   .logoTextGradient {
     font-size: 1.6rem;
-    margin-bottom: 18px;
   }
   
   .featuresRow .feature {
-    padding: 8px 16px;
     font-size: 0.85rem;
+    padding: 5px 10px;
   }
   
   .input {
-    padding: 12px 16px;
-    font-size: 0.9rem;
+    padding: 10px 14px;
   }
   
   .submitButton {
-    padding: 14px 20px;
-    font-size: 0.95rem;
+    padding: 12px 20px;
   }
   
   .successTitle {
@@ -542,7 +726,7 @@
 
 @media (max-width: 360px) {
   .title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   
   .logoTextGradient {
@@ -551,16 +735,14 @@
   
   .featuresRow .feature {
     font-size: 0.8rem;
-    padding: 6px 12px;
+    padding: 4px 8px;
   }
   
   .input {
-    padding: 10px 14px;
-    font-size: 0.85rem;
+    padding: 8px 12px;
   }
   
   .submitButton {
-    padding: 12px 18px;
-    font-size: 0.9rem;
+    padding: 10px 18px;
   }
 } 

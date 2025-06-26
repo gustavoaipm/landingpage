@@ -11,6 +11,8 @@ export default function WaitlistPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [showShareOptions, setShowShareOptions] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,6 +51,46 @@ export default function WaitlistPage() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const copyToClipboard = async () => {
+    const waitlistUrl = window.location.href;
+    try {
+      await navigator.clipboard.writeText(waitlistUrl);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+  const shareOnSocial = (platform: string) => {
+    const waitlistUrl = window.location.href;
+    const text = "Join me on the waitlist for Gustavo AI - the future of AI-powered property management! 🏠🤖";
+    
+    let shareUrl = '';
+    
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(waitlistUrl)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(waitlistUrl)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(waitlistUrl)}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + waitlistUrl)}`;
+        break;
+      case 'email':
+        shareUrl = `mailto:?subject=${encodeURIComponent('Join Gustavo AI Waitlist')}&body=${encodeURIComponent(text + '\n\n' + waitlistUrl)}`;
+        break;
+      default:
+        return;
+    }
+    
+    window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
   return (
@@ -127,12 +169,81 @@ export default function WaitlistPage() {
               <p className={styles.successMessage}>
                 Thank you for joining our waitlist. We&apos;ll notify you as soon as Gustavo AI is ready for you.
               </p>
-              <button 
-                onClick={() => setIsSubmitted(false)}
-                className={styles.backButton}
-              >
-                Join Another Email
-              </button>
+              
+              <div className={styles.referSection}>
+                <button 
+                  onClick={() => setShowShareOptions(!showShareOptions)}
+                  className={styles.referButton}
+                >
+                  <span className={styles.referIcon}>📤</span>
+                  Refer a Friend
+                </button>
+                
+                {showShareOptions && (
+                  <div className={styles.shareOptions}>
+                    <div className={styles.shareHeader}>
+                      <h3>Share the waitlist</h3>
+                      <button 
+                        onClick={() => setShowShareOptions(false)}
+                        className={styles.closeButton}
+                      >
+                        ×
+                      </button>
+                    </div>
+                    
+                    <div className={styles.shareButtons}>
+                      <button 
+                        onClick={() => shareOnSocial('twitter')}
+                        className={`${styles.shareButton} ${styles.twitter}`}
+                      >
+                        <span>🐦</span> Twitter
+                      </button>
+                      <button 
+                        onClick={() => shareOnSocial('linkedin')}
+                        className={`${styles.shareButton} ${styles.linkedin}`}
+                      >
+                        <span>💼</span> LinkedIn
+                      </button>
+                      <button 
+                        onClick={() => shareOnSocial('facebook')}
+                        className={`${styles.shareButton} ${styles.facebook}`}
+                      >
+                        <span>📘</span> Facebook
+                      </button>
+                      <button 
+                        onClick={() => shareOnSocial('whatsapp')}
+                        className={`${styles.shareButton} ${styles.whatsapp}`}
+                      >
+                        <span>💬</span> WhatsApp
+                      </button>
+                      <button 
+                        onClick={() => shareOnSocial('email')}
+                        className={`${styles.shareButton} ${styles.email}`}
+                      >
+                        <span>📧</span> Email
+                      </button>
+                    </div>
+                    
+                    <div className={styles.copySection}>
+                      <p>Or copy the link:</p>
+                      <div className={styles.copyContainer}>
+                        <input 
+                          type="text" 
+                          value={typeof window !== 'undefined' ? window.location.href : ''} 
+                          readOnly 
+                          className={styles.copyInput}
+                        />
+                        <button 
+                          onClick={copyToClipboard}
+                          className={styles.copyButton}
+                        >
+                          {copySuccess ? '✓ Copied!' : 'Copy'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
