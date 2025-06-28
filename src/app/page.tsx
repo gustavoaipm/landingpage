@@ -3,297 +3,119 @@
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./page.module.css";
+import DemoModal from "../components/DemoModal";
 
-export default function Home() {
+export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
-    <div className={styles.page}>
-      {/* Navigation */}
-      <nav className={styles.navbar}>
-        <div className={styles.navContainer}>
-          <div className={styles.logo}>
-            <span className={styles.logoText}>Gustavo AI</span>
-          </div>
-          <div className={styles.navLinks}>
-            <a href="#features">Features</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <Link href="/waitlist" className={styles.ctaButton}>Join Waitlist</Link>
-          <button className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
-            ☰
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <div className={`${styles.mobileMenu} ${styles.active}`}>
-            <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
-            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-            <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>Join Waitlist</Link>
-          </div>
-        )}
-      </nav>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            Gustavo.AI
+            <span className="block text-4xl text-blue-600 mt-2">Scheduling Service</span>
+          </h1>
+          
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Intelligent AI-powered scheduling that automates property service coordination 
+            through email and SMS communication. Let our AI handle the complex task of 
+            finding the perfect time for everyone.
+          </p>
 
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContainer}>
-          <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>
-              Revolutionize Your Property Management with AI
-            </h1>
-            <p className={styles.heroSubtitle}>
-              Gustavo AI streamlines property management with intelligent automation, 
-              predictive analytics, and seamless tenant communication. 
-              Manage your properties smarter, not harder.
-            </p>
-            <div className={styles.heroButtons}>
-              <Link href="/waitlist" className={styles.primaryButton}>Join the Waitlist</Link>
-              <button className={styles.secondaryButton}>Watch Demo</button>
-            </div>
-            <div className={styles.heroStats}>
-              <div className={styles.stat}>
-                <span className={styles.statNumber}>10,000+</span>
-                <span className={styles.statLabel}>Properties Managed</span>
-              </div>
-              <div className={styles.stat}>
-                <span className={styles.statNumber}>98%</span>
-                <span className={styles.statLabel}>Satisfaction Rate</span>
-              </div>
-              <div className={styles.stat}>
-                <span className={styles.statNumber}>24/7</span>
-                <span className={styles.statLabel}>AI Support</span>
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link 
+              href="/scheduling"
+              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Create Scheduling Request
+            </Link>
+            <button
+              onClick={() => setIsDemoOpen(true)}
+              className="bg-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center justify-center space-x-2"
+            >
+              <span>🎬</span>
+              <span>Watch Demo</span>
+            </button>
+            <Link 
+              href="/dashboard"
+              className="bg-gray-100 text-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+            >
+              View Dashboard
+            </Link>
           </div>
-          <div className={styles.heroImage}>
-            <div className={styles.imagePlaceholder}>
-              <span>AI Dashboard Preview</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      <section id="features" className={styles.features}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Powerful Features</h2>
-            <p className={styles.sectionSubtitle}>
-              Everything you need to manage properties efficiently with AI
-            </p>
-          </div>
-          <div className={styles.featuresGrid}>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🤖</div>
-              <h3>AI-Powered Automation</h3>
-              <p>Automate routine tasks like rent collection, maintenance requests, and tenant screening with intelligent AI algorithms.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-3xl mb-4">🤖</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Communication</h3>
+              <p className="text-gray-600">
+                Our AI automatically sends emails and SMS messages to coordinate with all participants.
+              </p>
             </div>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📊</div>
-              <h3>Predictive Analytics</h3>
-              <p>Get insights into property performance, market trends, and maintenance predictions to maximize your ROI.</p>
-            </div>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>💬</div>
-              <h3>Smart Communication</h3>
-              <p>AI-powered tenant communication with instant responses, automated notifications, and 24/7 support.</p>
-            </div>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔍</div>
-              <h3>Intelligent Screening</h3>
-              <p>Advanced tenant screening with AI analysis of credit history, rental history, and risk assessment.</p>
-            </div>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📱</div>
-              <h3>Mobile App</h3>
-              <p>Manage your properties on the go with our intuitive mobile app for both property managers and tenants.</p>
-            </div>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🛡️</div>
-              <h3>Secure & Compliant</h3>
-              <p>Bank-level security with GDPR compliance and regular security audits to protect your data.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className={styles.testimonials}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>What Our Clients Say</h2>
-            <p className={styles.sectionSubtitle}>
-              Join thousands of satisfied property managers
-            </p>
-          </div>
-          <div className={styles.testimonialsGrid}>
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialContent}>
-                <p>&ldquo;Gustavo AI has transformed how we manage our 200+ properties. The AI automation saves us 20+ hours per week!&rdquo;</p>
-              </div>
-              <div className={styles.testimonialAuthor}>
-                <div className={styles.authorAvatar}>SM</div>
-                <div className={styles.authorInfo}>
-                  <h4>Sarah Martinez</h4>
-                  <span>Property Manager, Urban Real Estate</span>
-                </div>
-              </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-3xl mb-4">📅</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Calendar Integration</h3>
+              <p className="text-gray-600">
+                Seamlessly integrates with Google Calendar, Outlook, and Apple Calendar.
+              </p>
             </div>
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialContent}>
-                <p>&ldquo;The predictive analytics helped us increase our rental income by 15% in just 6 months. Incredible ROI!&rdquo;</p>
-              </div>
-              <div className={styles.testimonialAuthor}>
-                <div className={styles.authorAvatar}>MJ</div>
-                <div className={styles.authorInfo}>
-                  <h4>Michael Johnson</h4>
-                  <span>CEO, Johnson Properties</span>
-                </div>
-              </div>
-            </div>
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialContent}>
-                <p>&ldquo;24/7 AI support means our tenants get instant help, and we get peace of mind. Game changer!&rdquo;</p>
-              </div>
-              <div className={styles.testimonialAuthor}>
-                <div className={styles.authorAvatar}>LC</div>
-                <div className={styles.authorInfo}>
-                  <h4>Lisa Chen</h4>
-                  <span>Property Owner, Chen Holdings</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className={styles.pricing}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Simple, Transparent Pricing</h2>
-            <p className={styles.sectionSubtitle}>
-              Choose the plan that fits your portfolio size
-            </p>
-          </div>
-          <div className={styles.pricingGrid}>
-            <div className={styles.pricingCard}>
-              <div className={styles.pricingHeader}>
-                <h3>Starter</h3>
-                <div className={styles.price}>
-                  <span className={styles.currency}>$</span>
-                  <span className={styles.amount}>29</span>
-                  <span className={styles.period}>/month</span>
-                </div>
-                <p>Perfect for small portfolios</p>
-              </div>
-              <ul className={styles.pricingFeatures}>
-                <li>Up to 10 properties</li>
-                <li>Basic AI automation</li>
-                <li>Tenant screening</li>
-                <li>Mobile app access</li>
-                <li>Email support</li>
-              </ul>
-              <Link href="/waitlist" className={styles.pricingButton}>Join Waitlist</Link>
-            </div>
-            <div className={`${styles.pricingCard} ${styles.featured}`}>
-              <div className={styles.featuredBadge}>Most Popular</div>
-              <div className={styles.pricingHeader}>
-                <h3>Professional</h3>
-                <div className={styles.price}>
-                  <span className={styles.currency}>$</span>
-                  <span className={styles.amount}>79</span>
-                  <span className={styles.period}>/month</span>
-                </div>
-                <p>Ideal for growing portfolios</p>
-              </div>
-              <ul className={styles.pricingFeatures}>
-                <li>Up to 50 properties</li>
-                <li>Advanced AI automation</li>
-                <li>Predictive analytics</li>
-                <li>Priority support</li>
-                <li>Custom integrations</li>
-                <li>Advanced reporting</li>
-              </ul>
-              <Link href="/waitlist" className={styles.pricingButton}>Join Waitlist</Link>
-            </div>
-            <div className={styles.pricingCard}>
-              <div className={styles.pricingHeader}>
-                <h3>Enterprise</h3>
-                <div className={styles.price}>
-                  <span className={styles.currency}>$</span>
-                  <span className={styles.amount}>199</span>
-                  <span className={styles.period}>/month</span>
-                </div>
-                <p>For large property companies</p>
-              </div>
-              <ul className={styles.pricingFeatures}>
-                <li>Unlimited properties</li>
-                <li>Custom AI models</li>
-                <li>Dedicated account manager</li>
-                <li>API access</li>
-                <li>White-label options</li>
-                <li>24/7 phone support</li>
-              </ul>
-              <Link href="/waitlist" className={styles.pricingButton}>Contact Sales</Link>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-3xl mb-4">⚡</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Coordination</h3>
+              <p className="text-gray-600">
+                AI finds the optimal meeting time by analyzing everyone's availability.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className={styles.cta}>
-        <div className={styles.container}>
-          <div className={styles.ctaContent}>
-            <h2>Ready to Transform Your Property Management?</h2>
-            <p>Join thousands of property managers who trust Gustavo AI</p>
-            <div className={styles.ctaButtons}>
-              <Link href="/waitlist" className={styles.primaryButton}>Join the Waitlist</Link>
-              <button className={styles.secondaryButton}>Schedule Demo</button>
+          <div className="mt-16 bg-white rounded-lg shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">How It Works</h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold">
+                  1
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Submit Request</h4>
+                <p className="text-sm text-gray-600">Fill out the scheduling form with service details and participants.</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold">
+                  2
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">AI Outreach</h4>
+                <p className="text-sm text-gray-600">Our AI contacts all participants via email and SMS.</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold">
+                  3
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Collect Availability</h4>
+                <p className="text-sm text-gray-600">AI gathers availability preferences from all participants.</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold">
+                  4
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Schedule Event</h4>
+                <p className="text-sm text-gray-600">AI finds the best time and creates calendar events for everyone.</p>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.container}>
-          <div className={styles.footerContent}>
-            <div className={styles.footerSection}>
-              <h3>Gustavo AI</h3>
-              <p>Revolutionizing property management with artificial intelligence.</p>
-            </div>
-            <div className={styles.footerSection}>
-              <h4>Product</h4>
-              <a href="#features">Features</a>
-              <a href="#pricing">Pricing</a>
-              <a href="#testimonials">Testimonials</a>
-            </div>
-            <div className={styles.footerSection}>
-              <h4>Company</h4>
-              <a href="#about">About</a>
-              <a href="#careers">Careers</a>
-              <a href="#contact">Contact</a>
-            </div>
-            <div className={styles.footerSection}>
-              <h4>Support</h4>
-              <a href="#help">Help Center</a>
-              <a href="#docs">Documentation</a>
-              <a href="#status">Status</a>
-            </div>
-          </div>
-          <div className={styles.footerBottom}>
-            <p>&copy; 2024 Gustavo AI. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      </div>
+      
+      <DemoModal 
+        isOpen={isDemoOpen} 
+        onClose={() => setIsDemoOpen(false)} 
+      />
     </div>
   );
 }

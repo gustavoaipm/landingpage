@@ -1,45 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Gustavo AI - AI-Powered Property Management Platform",
-  description: "Revolutionize your property management with Gustavo AI. Streamline operations with intelligent automation, predictive analytics, and seamless tenant communication. Manage properties smarter, not harder.",
-  keywords: [
-    "AI property management",
-    "property management software",
-    "tenant screening",
-    "rental automation",
-    "property analytics",
-    "real estate management",
-    "AI automation",
-    "property management platform"
-  ],
-  authors: [{ name: "Gustavo AI" }],
-  creator: "Gustavo AI",
-  publisher: "Gustavo AI",
-  robots: "index, follow",
-  openGraph: {
-    title: "Gustavo AI - AI-Powered Property Management Platform",
-    description: "Revolutionize your property management with intelligent automation and predictive analytics.",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Gustavo AI - AI-Powered Property Management Platform",
-    description: "Revolutionize your property management with intelligent automation and predictive analytics.",
-  },
+  title: "Gustavo.AI Scheduling Service",
+  description: "Intelligent AI-powered scheduling that automates property service coordination through email and SMS communication.",
 };
 
 export default function RootLayout({
@@ -49,7 +17,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={inter.className}>
+        <nav className="bg-white shadow-sm border-b">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-between items-center h-16">
+              <Link href="/" className="text-xl font-bold text-gray-900">
+                Gustavo.AI
+              </Link>
+              <div className="hidden md:flex space-x-8">
+                <Link href="/scheduling" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Schedule
+                </Link>
+                <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Dashboard
+                </Link>
+              </div>
+            </div>
+          </div>
+        </nav>
         {children}
       </body>
     </html>
