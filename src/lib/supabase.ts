@@ -75,7 +75,7 @@ export interface Message {
   message_type: 'email' | 'sms';
   status: 'sent' | 'delivered' | 'read' | 'replied' | 'failed';
   timestamp: string;
-  metadata: any;
+  metadata: Record<string, unknown>;
 }
 
 export interface ParticipantAvailability {
