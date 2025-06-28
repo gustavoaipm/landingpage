@@ -36,8 +36,8 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             </div>
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm text-gray-700">
-                "Need to schedule a plumbing inspection for Unit 3B. 
-                Available participants: tenant, plumber, property manager"
+                &ldquo;Need to schedule a plumbing inspection for Unit 3B. 
+                Available participants: tenant, plumber, property manager&rdquo;
               </p>
             </div>
             <div className="text-xs text-gray-500 text-center">
@@ -59,7 +59,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <span className="text-sm font-medium">Email to Tenant</span>
               </div>
               <p className="text-xs text-gray-600">
-                "Hi Sarah, we need to schedule a plumbing inspection..."
+                &ldquo;Hi Sarah, we need to schedule a plumbing inspection...&rdquo;
               </p>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-lg">
@@ -68,7 +68,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <span className="text-sm font-medium">SMS to Plumber</span>
               </div>
               <p className="text-xs text-gray-600">
-                "Mike, new job at 123 Main St. Unit 3B..."
+                &ldquo;Mike, new job at 123 Main St. Unit 3B...&rdquo;
               </p>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-lg">
@@ -77,7 +77,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <span className="text-sm font-medium">Calendar Check</span>
               </div>
               <p className="text-xs text-gray-600">
-                "Checking property manager's availability..."
+                &ldquo;Checking property manager&apos;s availability...&rdquo;
               </p>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Available</span>
               </div>
               <div className="text-xs text-gray-600">
-                "I'm available Tuesday 2-4pm or Wednesday 10am-12pm"
+                &ldquo;I&apos;m available Tuesday 2-4pm or Wednesday 10am-12pm&rdquo;
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Available</span>
               </div>
               <div className="text-xs text-gray-600">
-                "Tuesday 2-4pm works for me"
+                &ldquo;Tuesday 2-4pm works for me&rdquo;
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Available</span>
               </div>
               <div className="text-xs text-gray-600">
-                "Tuesday 2-4pm is perfect"
+                &ldquo;Tuesday 2-4pm is perfect&rdquo;
               </div>
             </div>
           </div>

@@ -2,16 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./page.module.css";
 import DemoModal from "../components/DemoModal";
 
 export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -71,7 +65,7 @@ export default function HomePage() {
               <div className="text-3xl mb-4">⚡</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Coordination</h3>
               <p className="text-gray-600">
-                AI finds the optimal meeting time by analyzing everyone's availability.
+                AI finds the optimal meeting time by analyzing everyone&apos;s availability.
               </p>
             </div>
           </div>
