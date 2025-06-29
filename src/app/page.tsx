@@ -35,7 +35,7 @@ export default function HomePage() {
       } else {
         setMessage(data.error || 'Something went wrong. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setMessage('Network error. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -59,7 +59,7 @@ export default function HomePage() {
           {isSuccess ? (
             <div className={styles.successMessage}>
               <h3>Thank you for joining!</h3>
-              <p>We'll notify you as soon as Gustavo.AI is ready for you.</p>
+              <p>We&apos;ll notify you as soon as Gustavo.AI is ready for you.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className={styles.form}>

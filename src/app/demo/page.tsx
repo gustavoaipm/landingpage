@@ -51,14 +51,14 @@ export default function DemoPage() {
               <p className="text-sm text-green-700">
                 To: tech1@company.com<br/>
                 Subject: HVAC Maintenance - Availability Request<br/>
-                "Hi John, we need to schedule HVAC maintenance..."
+                &ldquo;Hi John, we need to schedule HVAC maintenance...&rdquo;
               </p>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg">
               <h4 className="font-semibold text-blue-900">📱 SMS Sent</h4>
               <p className="text-sm text-blue-700">
                 To: +1 (555) 123-4567<br/>
-                "Gustavo.AI: Please confirm your availability for HVAC maintenance on Dec 15-20"
+                &ldquo;Gustavo.AI: Please confirm your availability for HVAC maintenance on Dec 15-20&rdquo;
               </p>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function DemoPage() {
         <div className="text-center space-y-4">
           <div className="text-6xl mb-4">🎉</div>
           <h3 className="text-xl font-semibold text-gray-900">
-            That's how Gustavo.AI works!
+            That&apos;s how Gustavo.AI works!
           </h3>
           <p className="text-gray-600">
             From request to scheduled event in minutes, not hours.
