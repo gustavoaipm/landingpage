@@ -1,13 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Only create Supabase client if environment variables are available
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 // Database types for TypeScript
 export interface WaitlistEntry {
@@ -100,8 +99,12 @@ export interface CalendarIntegration {
   updated_at: string;
 }
 
-// API functions
+// API functions with fallbacks when Supabase is not available
 export async function addToWaitlist(email: string): Promise<{ success: boolean; error?: string }> {
+  if (!supabase) {
+    return { success: false, error: 'Supabase not configured' };
+  }
+
   try {
     const { error } = await supabase
       .from('waitlist')
@@ -120,6 +123,10 @@ export async function addToWaitlist(email: string): Promise<{ success: boolean; 
 }
 
 export async function createSchedulingRequest(data: Omit<SchedulingRequest, 'id' | 'created_at' | 'updated_at'>): Promise<{ success: boolean; error?: string; requestId?: string }> {
+  if (!supabase) {
+    return { success: false, error: 'Supabase not configured' };
+  }
+
   try {
     const { data: result, error } = await supabase
       .from('scheduling_requests')
@@ -140,6 +147,10 @@ export async function createSchedulingRequest(data: Omit<SchedulingRequest, 'id'
 }
 
 export async function getSchedulingRequests(): Promise<{ success: boolean; data?: SchedulingRequest[]; error?: string }> {
+  if (!supabase) {
+    return { success: false, error: 'Supabase not configured' };
+  }
+
   try {
     const { data, error } = await supabase
       .from('scheduling_requests')

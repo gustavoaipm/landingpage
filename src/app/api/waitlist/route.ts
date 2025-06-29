@@ -1,90 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-// Force fresh deployment - Supabase integration only
-// Clear all cached file system code - deployment timestamp fix
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-// Email validation function
-function isValidEmail(email: string): boolean {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return emailRegex.test(email);
-}
+import { addToWaitlist } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email } = await request.json();
+    const body = await request.json();
+    const { email } = body;
 
-    // Validate input
-    if (!name || !email) {
+    if (!email) {
       return NextResponse.json(
-        { error: 'Name and email are required' },
+        { error: 'Email is required' },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    if (!isValidEmail(email)) {
+    const result = await addToWaitlist(email);
+    
+    if (!result.success) {
       return NextResponse.json(
-        { error: 'Please provide a valid email address' },
+        { error: result.error || 'Failed to add to waitlist' },
         { status: 400 }
-      );
-    }
-
-    // Check for duplicate email
-    const { data: existing, error: findError } = await supabase
-      .from('waitlist')
-      .select('id')
-      .eq('email', email.toLowerCase().trim());
-
-    if (findError) {
-      console.error('Error checking for existing email:', findError);
-      return NextResponse.json(
-        { error: 'Database error: ' + findError.message },
-        { status: 500 }
-      );
-    }
-
-    if (existing && existing.length > 0) {
-      return NextResponse.json(
-        { error: 'This email is already on the waitlist' },
-        { status: 409 }
-      );
-    }
-
-    // Insert new entry
-    const { data, error } = await supabase
-      .from('waitlist')
-      .insert([{ 
-        name: name.trim(), 
-        email: email.toLowerCase().trim() 
-      }])
-      .select();
-
-    if (error) {
-      console.error('Error inserting new entry:', error);
-      return NextResponse.json(
-        { error: 'Database error: ' + error.message },
-        { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Successfully added to waitlist!',
-        entry: data[0]
-      },
-      { status: 201 }
+      { message: 'Successfully added to waitlist' },
+      { status: 200 }
     );
-
   } catch (error) {
-    console.error('Waitlist API error:', error);
+    console.error('Error in waitlist POST:', error);
     return NextResponse.json(
-      { error: 'Internal server error: ' + (error instanceof Error ? error.message : 'Unknown error') },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
@@ -92,33 +37,15 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    console.log('Environment variables:', {
-      url: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Missing',
-      key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Set' : 'Missing'
-    });
-
-    const { data, error } = await supabase
-      .from('waitlist')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching waitlist entries:', error);
-      return NextResponse.json(
-        { error: 'Database error: ' + error.message },
-        { status: 500 }
-      );
-    }
-
     return NextResponse.json({ 
-      entries: data || [],
-      count: data?.length || 0
+      entries: [],
+      count: 0,
+      message: 'Supabase not configured - demo mode'
     });
-
   } catch (error) {
     console.error('Waitlist GET error:', error);
     return NextResponse.json(
-      { error: 'Internal server error: ' + (error instanceof Error ? error.message : 'Unknown error') },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
