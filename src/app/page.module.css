@@ -207,8 +207,8 @@
 .sectionTitle {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 15px;
   color: #333;
+  margin-bottom: 15px;
 }
 
 .sectionSubtitle {
@@ -220,33 +220,32 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
 .featureCard {
   background: white;
-  padding: 30px;
+  padding: 40px 30px;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .featureCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .featureIcon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
 .featureCard h3 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 15px;
   color: #333;
+  margin-bottom: 15px;
 }
 
 .featureCard p {
@@ -254,7 +253,7 @@
   line-height: 1.6;
 }
 
-/* Testimonials Section */
+/* Testimonials */
 .testimonials {
   padding: 80px 0;
   background: #f8f9fa;
@@ -280,8 +279,8 @@
 
 .testimonialContent p {
   font-size: 1.1rem;
-  line-height: 1.6;
   color: #333;
+  line-height: 1.6;
   margin-bottom: 20px;
   font-style: italic;
 }
@@ -295,17 +294,17 @@
 .authorAvatar {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: 1.1rem;
 }
 
 .authorInfo h4 {
+  font-size: 1.1rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 5px;
@@ -316,7 +315,7 @@
   font-size: 0.9rem;
 }
 
-/* Pricing Section */
+/* Pricing */
 .pricing {
   padding: 80px 0;
   background: white;
@@ -333,20 +332,19 @@
 .pricingCard {
   background: white;
   padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  position: relative;
+  border: 2px solid transparent;
 }
 
 .pricingCard:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 
 .pricingCard.featured {
-  border: 3px solid #667eea;
-  transform: scale(1.05);
+  border-color: #667eea;
+  position: relative;
 }
 
 .featuredBadge {
@@ -363,14 +361,15 @@
 }
 
 .pricingHeader {
+  text-align: center;
   margin-bottom: 30px;
 }
 
 .pricingHeader h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
-  margin-bottom: 15px;
   color: #333;
+  margin-bottom: 10px;
 }
 
 .price {
@@ -399,7 +398,7 @@
 
 .pricingHeader p {
   color: #666;
-  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .pricingFeatures {
@@ -411,30 +410,29 @@
 .pricingFeatures li {
   padding: 10px 0;
   color: #333;
-  position: relative;
-  padding-left: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pricingFeatures li::before {
   content: "✓";
-  position: absolute;
-  left: 0;
   color: #667eea;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .pricingButton {
+  width: 100%;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 15px 30px;
-  border-radius: 25px;
+  padding: 15px;
+  border-radius: 10px;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   transition: transform 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  width: 100%;
 }
 
 .pricingButton:hover {
@@ -465,6 +463,7 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Footer */
@@ -485,28 +484,27 @@
 
 .footerSection h3,
 .footerSection h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 15px;
-  color: #fff;
 }
 
 .footerSection h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
+  color: #667eea;
 }
 
 .footerSection h4 {
-  font-size: 1rem;
-  font-weight: 500;
+  color: #ccc;
 }
 
 .footerSection p {
-  color: #ccc;
+  color: #999;
   line-height: 1.6;
   margin-bottom: 10px;
 }
 
 .footerSection a {
-  color: #ccc;
+  color: #999;
   text-decoration: none;
   transition: color 0.3s ease;
   display: block;
@@ -518,21 +516,21 @@
 }
 
 .footerBottom {
-  text-align: center;
-  padding-top: 30px;
-  margin-top: 40px;
   border-top: 1px solid #444;
-  color: #ccc;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  color: #999;
 }
 
-/* Mobile Navigation */
+/* Mobile Menu */
 .mobileMenuButton {
   display: none;
   background: none;
   border: none;
   font-size: 1.5rem;
-  cursor: pointer;
   color: #333;
+  cursor: pointer;
 }
 
 .mobileMenu {
@@ -541,8 +539,7 @@
   top: 70px;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
+  background: white;
   padding: 20px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   flex-direction: column;
@@ -564,20 +561,21 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .heroContainer {
-    gap: 40px;
+    grid-template-columns: 1fr;
+    text-align: center;
   }
-  
+
   .heroTitle {
     font-size: 3rem;
   }
-  
+
   .imagePlaceholder {
-    width: 350px;
-    height: 260px;
+    width: 300px;
+    height: 200px;
   }
-  
+
   .featuresGrid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
 
@@ -585,66 +583,64 @@
   .navLinks {
     display: none;
   }
-  
+
   .mobileMenuButton {
     display: block;
   }
-  
+
   .mobileMenu.active {
     display: flex;
   }
-  
+
   .heroContainer {
-    grid-template-columns: 1fr;
-    text-align: center;
     gap: 40px;
+    padding: 0 15px;
   }
-  
+
   .heroTitle {
     font-size: 2.5rem;
   }
-  
+
   .heroButtons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .heroStats {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .featuresGrid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 20px;
   }
-  
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
   .testimonialsGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .pricingGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .pricingCard.featured {
-    transform: none;
+    order: -1;
   }
-  
+
   .ctaButtons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .footerContent {
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .imagePlaceholder {
-    width: 100%;
-    max-width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 150px;
+    font-size: 0.9rem;
   }
 }
 
@@ -652,76 +648,73 @@
   .container {
     padding: 0 15px;
   }
-  
+
   .navContainer {
     padding: 0 15px;
-    height: 60px;
   }
-  
+
   .logoText {
     font-size: 20px;
   }
-  
+
   .hero {
     padding: 100px 0 60px;
   }
-  
+
   .heroTitle {
     font-size: 2rem;
   }
-  
+
   .heroSubtitle {
     font-size: 1rem;
   }
-  
+
   .sectionTitle {
     font-size: 2rem;
   }
-  
+
   .heroStats {
-    flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
-  
+
   .statNumber {
     font-size: 1.5rem;
   }
-  
+
   .features {
     padding: 60px 0;
   }
-  
+
   .testimonials {
     padding: 60px 0;
   }
-  
+
   .pricing {
     padding: 60px 0;
   }
-  
+
   .cta {
     padding: 60px 0;
   }
-  
+
   .ctaContent h2 {
     font-size: 2rem;
   }
-  
+
   .footer {
     padding: 40px 0 20px;
   }
-  
+
   .primaryButton,
-  .secondaryButton,
-  .ctaButton {
+  .secondaryButton {
     padding: 12px 24px;
     font-size: 0.9rem;
   }
-  
+
   .pricingCard {
     padding: 30px 20px;
   }
-  
+
   .amount {
     font-size: 2.5rem;
   }
@@ -731,15 +724,15 @@
   .heroTitle {
     font-size: 1.8rem;
   }
-  
+
   .sectionTitle {
     font-size: 1.8rem;
   }
-  
+
   .heroButtons {
     gap: 15px;
   }
-  
+
   .primaryButton,
   .secondaryButton {
     padding: 10px 20px;
@@ -747,12 +740,12 @@
   }
 }
 
-/* Home page styles */
+/* Original Landing Page Styles */
 .title {
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -760,41 +753,41 @@
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
-  color: #6b7280;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  color: #666;
 }
 
 .button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
   text-decoration: none;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin: 0.5rem;
+  display: inline-block;
 }
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
 
 .featureGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin: 3rem 0;
+  margin-top: 3rem;
 }
 
 .featureCard {
   background: white;
   padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -805,31 +798,68 @@
 .featureIcon {
   font-size: 3rem;
   margin-bottom: 1rem;
-  display: block;
+  text-align: center;
 }
 
 .featureTitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #1f2937;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .featureDescription {
-  color: #6b7280;
+  color: #666;
   line-height: 1.6;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
   }
-  
+
   .subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
-  
+
   .featureGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Demo Section Styles */
+.demoSection {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 15px;
+  border: 2px solid #e9ecef;
+}
+
+.demoButton {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  margin-bottom: 1rem;
+}
+
+.demoButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  color: white;
+}
+
+.demoDescription {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
 }
